@@ -35,7 +35,7 @@ class App extends Component {
             const squareState = this.state[gameSquare];
             return <div 
               className="game-square"
-              onClick={() => this.selectSquare(gameSquare, this.state.currentPlayer)}>
+              onClick={() => {if(squareState === '') {this.selectSquare(gameSquare, this.state.currentPlayer)}}}>
               <span>{squareState}</span>
             </div>
           })}
