@@ -33,7 +33,9 @@ class App extends Component {
         <div className="game-container">
           {gameSquares.map(gameSquare => {
             const squareState = this.state[gameSquare];
-            return <div className="game-square">
+            return <div 
+              className="game-square"
+              onClick={() => this.selectSquare(gameSquare, this.state.currentPlayer)}>
               <span>{squareState}</span>
             </div>
           })}
