@@ -2,6 +2,30 @@
   text-align: center;
 }
 
+.game-player-indicator {
+  display: flex;
+  margin: auto;
+  width: 300px;
+  height: 50px;
+  justify-content: center;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.game-player-indicator span {
+  line-height: 50px;
+  font-size: 25px;
+}
+
+.game-player-indicator-x {
+  background-color: lightblue;
+}
+
+.game-player-indicator-o {
+  background-color: lightcoral;
+}
+
 .game-container {
   display: grid;
   width: 300px;
@@ -13,11 +37,19 @@
 }
 
 .game-square {
-  background-color: blue;
   align-self: stretch;
   color: white;
   font-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: solid 1px black;
+}
+
+.game-square-x {
+  background-color: lightblue;
+}
+
+.game-square-o {
+  background-color: lightcoral;
 }

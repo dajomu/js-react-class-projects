@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CurrentPlayer from './components/CurrentPlayer';
 import './App.css';
 
 const gameSquares = ['a1','a2','a3','b1','b2','b3','c1','c2','c3'];
@@ -30,11 +31,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <CurrentPlayer currentPlayer={this.state.currentPlayer} />
         <div className="game-container">
           {gameSquares.map(gameSquare => {
             const squareState = this.state[gameSquare];
             return <div 
-              className="game-square"
+              className={`game-square${squareState !== '' ? ' game-square-' +  squareState : ''}`}
               onClick={() => {if(squareState === '') {this.selectSquare(gameSquare, this.state.currentPlayer)}}}>
               <span>{squareState}</span>
             </div>
