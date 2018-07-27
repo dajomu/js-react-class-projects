@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   randomizeContent = async () => {
-    const response = await fetch('https://source.unsplash.com/random');
+    const response = await fetch('https://source.unsplash.com/random/800x600');
     this.setState({memeImage: response.url})
   }
 
@@ -32,8 +32,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="meme__container">
-          <img className="meme__image" src={memeImage}/>
-          <p class="meme__text" style={{fontSize: this.calculateTextSize(memeText)}}>{memeText}</p>
+          <img className="meme__image" alt="Meme Image" src={memeImage}/>
+          <p className="meme__text" style={{fontSize: this.calculateTextSize(memeText)}}>{memeText}</p>
         </div>
         <div className="inputs">
           <label>
