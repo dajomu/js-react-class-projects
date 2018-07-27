@@ -14,6 +14,10 @@ class App extends Component {
     return memeText.length < 10 ? 100 : 10 / memeText.length * 100;
   }
 
+  changeImage = (event) => {
+    this.setState({memeImage: event.target.value});
+  }
+
   render() {
     const { memeImage, memeText } = this.state;
     return (
@@ -21,6 +25,16 @@ class App extends Component {
         <div className="meme__container">
           <img className="meme__image" src={memeImage}/>
           <p class="meme__text" style={{fontSize: this.calculateTextSize(memeText)}}>{memeText}</p>
+        </div>
+        <div className="inputs">
+        <label>
+          Image:
+          <input 
+            type="text"
+            name="memeImage"
+            value={memeImage}
+            onChange={this.changeImage} />
+        </label>
         </div>
       </div>
     );

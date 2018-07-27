@@ -1,6 +1,6 @@
 .App {
   background-color: black;
-  padding: 100px;
+  padding: 50px;
 }
 
 .meme__container {
@@ -23,4 +23,18 @@
   left: 0;
   right: 0;
   -webkit-text-stroke: 3px black;
+}
+
+.inputs {
+  margin: 10px auto;
+  width: 600px;
+}
+
+.inputs label {
+  color: white;
+}
+
+.inputs input {
+  width: 500px;
+  margin-left: 10px;
 }
