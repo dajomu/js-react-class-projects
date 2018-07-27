@@ -22,12 +22,12 @@
   margin: auto 0;
   left: 0;
   right: 0;
-  -webkit-text-stroke: 3px black;
+  -webkit-text-stroke: 2px black;
 }
 
 .inputs {
   margin: 10px auto;
-  width: 600px;
+  width: 650px;
 }
 
 .inputs label {
@@ -37,14 +37,14 @@
 }
 
 .inputs span {
-  width: 50px;
+  width: 80px;
   display: inline-block;
   font-size: 18px;
 }
 
 .inputs input {
   width: 500px;
-  margin-left: 10px;
+  margin-left: 20px;
   font-size: 18px;
 }
 
