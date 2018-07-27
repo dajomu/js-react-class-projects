@@ -32,6 +32,7 @@
 
 .inputs label {
   color: white;
+  display: block;
 }
 
 .inputs input {

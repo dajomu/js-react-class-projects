@@ -18,6 +18,10 @@ class App extends Component {
     this.setState({memeImage: event.target.value});
   }
 
+  changeText= (event) => {
+    this.setState({memeText: event.target.value});
+  }
+
   render() {
     const { memeImage, memeText } = this.state;
     return (
@@ -27,14 +31,22 @@ class App extends Component {
           <p class="meme__text" style={{fontSize: this.calculateTextSize(memeText)}}>{memeText}</p>
         </div>
         <div className="inputs">
-        <label>
-          Image:
-          <input 
-            type="text"
-            name="memeImage"
-            value={memeImage}
-            onChange={this.changeImage} />
-        </label>
+          <label>
+            Image:
+            <input 
+              type="text"
+              name="memeImage"
+              value={memeImage}
+              onChange={this.changeImage} />
+          </label>
+          <label>
+            Text:
+            <input 
+              type="text"
+              name="memeText"
+              value={memeText}
+              onChange={this.changeText} />
+          </label>
         </div>
       </div>
     );
