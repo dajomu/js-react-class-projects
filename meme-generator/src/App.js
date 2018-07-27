@@ -23,15 +23,18 @@ class App extends Component {
       fetch(`http://api.giphy.com/v1/gifs/random?api_key=${config.giphyApiKey}`).then(function(response){ 
         return response.json()
       });
-    const textFetchUrl = textSource === 'quotes' ? 'http://api.adviceslip.com/advice' : 'http://api.adviceslip.com/advice';
+    const textFetchUrl = textSource === 'quotes' ? 'https://talaikis.com/api/quotes/random/' : 'http://api.adviceslip.com/advice';
     const textFetch = fetch(textFetchUrl).then(function(response){ 
       return response.json()
     });
-    Promise.all([imageFetch, textFetch]).then(([imageResponse, textResponse]) => {
-      const memeImage = imageSource === 'unsplash' ? imageResponse.url : imageResponse.data.image_url;
-      const memeText = textSource === 'quotes' ? textResponse.quote : textResponse.slip.advice;
-      this.setState({memeImage, memeText})
-    }).catch(error => console.log(error))
+    Promise.all([imageFetch, textFetch]).then(this.setNewImageAndText).catch(error => console.log(error))
+  }
+
+  setNewImageAndText = ([imageResponse, textResponse]) => {
+    const { imageSource, textSource } = this.state;
+    const memeImage = imageSource === 'unsplash' ? imageResponse.url : imageResponse.data.image_url;
+    const memeText = textSource === 'quotes' ? textResponse.quote : textResponse.slip.advice;
+    this.setState({memeImage, memeText})
   }
 
   calculateTextSize = (memeText) => {
