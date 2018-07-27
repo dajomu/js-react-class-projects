@@ -9,25 +9,28 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      imageSource: "unsplash",
-      memeImage: "https://images.freeimages.com/images/large-previews/7e9/ladybird-1367182.jpg",
-      memeText: "Meme Text x",
+      imageSource: 'unsplash',
+      memeImage: 'https://images.freeimages.com/images/large-previews/7e9/ladybird-1367182.jpg',
+      memeText: 'Meme Text x',
+      textSource: 'advice',
     }
   }
 
   randomizeContent = async () => {
-    const { imageSource } = this.state;
+    const { imageSource, textSource } = this.state;
     const imageFetch = imageSource === 'unsplash' ?
       fetch('https://source.unsplash.com/random/800x600') :
       fetch(`http://api.giphy.com/v1/gifs/random?api_key=${config.giphyApiKey}`).then(function(response){ 
         return response.json()
       });
-    const textFetch = fetch('https://talaikis.com/api/quotes/random/').then(function(response){ 
+    const textFetchUrl = textSource === 'quotes' ? 'http://api.adviceslip.com/advice' : 'http://api.adviceslip.com/advice';
+    const textFetch = fetch(textFetchUrl).then(function(response){ 
       return response.json()
     });
     Promise.all([imageFetch, textFetch]).then(([imageResponse, textResponse]) => {
       const memeImage = imageSource === 'unsplash' ? imageResponse.url : imageResponse.data.image_url;
-      this.setState({memeImage: memeImage, memeText: textResponse.quote})
+      const memeText = textSource === 'quotes' ? textResponse.quote : textResponse.slip.advice;
+      this.setState({memeImage, memeText})
     }).catch(error => console.log(error))
   }
 
@@ -53,8 +56,12 @@ class App extends Component {
     this.setState({imageSource: event.target.value});
   }
 
+  handleTextSourceChange = (event) => {
+    this.setState({textSource: event.target.value});
+  }
+
   render() {
-    const { imageSource, memeImage, memeText } = this.state;
+    const { imageSource, memeImage, memeText, textSource } = this.state;
     return (
       <div className="App">
         <div className="meme__container">
@@ -79,16 +86,26 @@ class App extends Component {
               onChange={this.changeText} />
           </label>
           <label>
-            <span>Unsplash:</span>
+            <span>Image source:</span>
+            Unsplash:
             <input type="radio" value="unsplash" 
               checked={imageSource === 'unsplash'} 
               onChange={this.handleImageSourceChange} />
-          </label>
-          <label>
-            <span>Giphy:</span>
+            Giphy:
             <input type="radio" value="giphy" 
               checked={imageSource === 'giphy'} 
               onChange={this.handleImageSourceChange} />
+          </label>
+          <label>
+            <span>Text source:</span>
+            Quotes:
+            <input type="radio" value="quotes" 
+              checked={textSource === 'quotes'} 
+              onChange={this.handleTextSourceChange} />
+            Advice:
+            <input type="radio" value="advice" 
+              checked={textSource === 'advice'} 
+              onChange={this.handleTextSourceChange} />
           </label>
           <button onClick={this.randomizeContent}>
             Randomize!!

@@ -27,7 +27,7 @@
 
 .inputs {
   margin: 10px auto;
-  width: 650px;
+  width: 680px;
 }
 
 .inputs label {
@@ -37,15 +37,18 @@
 }
 
 .inputs span {
-  width: 80px;
+  width: 140px;
   display: inline-block;
   font-size: 18px;
 }
 
-.inputs input {
+.inputs input[type=text] {
   width: 500px;
-  margin-left: 20px;
   font-size: 18px;
+}
+
+.inputs input[type=radio] {
+  margin: 0 10px;
 }
 
 .inputs button {
