@@ -10,6 +10,11 @@ class App extends Component {
     }
   }
 
+  randomizeContent = async () => {
+    const response = await fetch('https://source.unsplash.com/random');
+    this.setState({memeImage: response.url})
+  }
+
   calculateTextSize = (memeText) => {
     return memeText.length < 10 ? 100 : 10 / memeText.length * 100;
   }
@@ -32,7 +37,7 @@ class App extends Component {
         </div>
         <div className="inputs">
           <label>
-            Image:
+            <span>Image:</span>
             <input 
               type="text"
               name="memeImage"
@@ -40,13 +45,16 @@ class App extends Component {
               onChange={this.changeImage} />
           </label>
           <label>
-            Text:
+            <span>Text:</span>
             <input 
               type="text"
               name="memeText"
               value={memeText}
               onChange={this.changeText} />
           </label>
+          <button onClick={this.randomizeContent}>
+            Randomize!!
+          </button>
         </div>
       </div>
     );

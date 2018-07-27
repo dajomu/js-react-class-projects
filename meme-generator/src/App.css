@@ -33,9 +33,17 @@
 .inputs label {
   color: white;
   display: block;
+  padding: 10px;
+}
+
+.inputs span {
+  width: 50px;
+  display: inline-block;
+  font-size: 18px;
 }
 
 .inputs input {
   width: 500px;
   margin-left: 10px;
+  font-size: 18px;
 }
