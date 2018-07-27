@@ -11,10 +11,14 @@ class App extends Component {
   }
 
   randomizeContent = async () => {
-    const imageResponse = await fetch('https://source.unsplash.com/random/800x600');
-    const textResponse = await fetch('https://talaikis.com/api/quotes/random/');
-    const textData = await textResponse.json();
-    this.setState({memeImage: imageResponse.url, memeText: textData.quote})
+    const imageFetch = fetch('https://source.unsplash.com/random/800x600');
+    const textFetch = fetch('https://talaikis.com/api/quotes/random/');
+    Promise.all([imageFetch, textFetch]).then(([imageResponse, textResponse]) => {
+      textResponse.json().then(
+        textData => {
+          this.setState({memeImage: imageResponse.url, memeText: textData.quote})
+        });
+    }).catch(error => console.log(error))
   }
 
   calculateTextSize = (memeText) => {
