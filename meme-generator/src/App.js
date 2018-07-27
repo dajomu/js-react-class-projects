@@ -11,12 +11,20 @@ class App extends Component {
   }
 
   randomizeContent = async () => {
-    const response = await fetch('https://source.unsplash.com/random/800x600');
-    this.setState({memeImage: response.url})
+    const imageResponse = await fetch('https://source.unsplash.com/random/800x600');
+    const textResponse = await fetch('https://talaikis.com/api/quotes/random/');
+    const textData = await textResponse.json();
+    this.setState({memeImage: imageResponse.url, memeText: textData.quote})
   }
 
   calculateTextSize = (memeText) => {
-    return memeText.length < 10 ? 100 : 10 / memeText.length * 100;
+    if(memeText.length < 10) {
+      return 100;
+    } else if(memeText.length > 25) {
+      return 40;
+    } else {
+      return 10 / memeText.length * 100;
+    }                
   }
 
   changeImage = (event) => {
